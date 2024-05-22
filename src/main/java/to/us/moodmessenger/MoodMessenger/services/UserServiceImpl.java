@@ -61,8 +61,6 @@ public class UserServiceImpl implements UserService {
             user1.setUsername(userFromCall.getUsername());
         if(userFromCall.getPassword()!=null)
             user1.setPassword(userFromCall.getPassword());
-        System.out.println(user1);
-        System.out.println(userFromCall);
         return user1;
     }
 }

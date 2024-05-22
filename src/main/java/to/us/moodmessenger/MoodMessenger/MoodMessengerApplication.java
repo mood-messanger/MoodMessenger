@@ -8,7 +8,6 @@ public class MoodMessengerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MoodMessengerApplication.class, args);
-		System.out.println("Started raw unga");
 	}
 
 
