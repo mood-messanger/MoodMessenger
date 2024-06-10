@@ -1,11 +1,12 @@
 package to.us.moodmessenger.MoodMessenger.services;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import to.us.moodmessenger.MoodMessenger.model.UserDTO;
 import to.us.moodmessenger.MoodMessenger.utils.PasswordUtils;
 
 import java.util.*;
-
+//@Primary
 @Service
 public class UserServiceImpl implements UserService {
 
