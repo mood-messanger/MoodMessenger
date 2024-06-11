@@ -12,4 +12,7 @@ import java.util.UUID;
 public interface MessageRepository extends JpaRepository<Message, UUID> {
     @Query(value = "SELECT * FROM MESSAGE where status = ?1", nativeQuery = true)
     List<Message> findAllRead(@Param("messagestatus") int messagestatus) ;
+
+    @Query(value = "SELECT * FROM MESSAGE WHERE ((sender_id = ?1 and receiver_id = ?2) or (receiver_id = ?1 and sender_id = ?2)) ORDER BY TIMESTAMP", nativeQuery = true)
+    List<Message> conversatiomBetweenSenderAndReceiver(String sender_id, String receiver_id) ;
 }

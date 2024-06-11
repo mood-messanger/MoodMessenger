@@ -23,7 +23,8 @@ public class MessageServiceJPAImpl implements MessageService {
     @Override
     public List<MessageDTO> getMessagesforSenderAndReceiver(UUID sender_id, UUID receiver_id) {
 
-        return List.of();
+        List<Message> messages = messageRepository.conversatiomBetweenSenderAndReceiver(sender_id.toString(), receiver_id.toString());
+        return messages.stream().map(messageMapper::messageToMessageDTO).toList();
     }
     @Override
     public MessageDTO getMessagebyId(UUID message_id) {

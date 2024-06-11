@@ -3,6 +3,7 @@ package to.us.moodmessenger.MoodMessenger.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import to.us.moodmessenger.MoodMessenger.entities.Message;
+import to.us.moodmessenger.MoodMessenger.model.ConverstationBetween;
 import to.us.moodmessenger.MoodMessenger.model.MessageDTO;
 import to.us.moodmessenger.MoodMessenger.services.MessageService;
 
@@ -25,5 +26,9 @@ public class MessageController {
     @GetMapping("/read")
     public List<MessageDTO> getAllMessagesRead(){
         return messageService.getAllMessagesRead();
+    }
+    @PostMapping("/conversation")
+    public List<MessageDTO> getAllMessagesConversation(@RequestBody ConverstationBetween converstationBetween){
+        return messageService.getMessagesforSenderAndReceiver(converstationBetween.getSender_id(),converstationBetween.getReceiver_id());
     }
 }
