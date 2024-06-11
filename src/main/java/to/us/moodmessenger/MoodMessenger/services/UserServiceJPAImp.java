@@ -2,11 +2,10 @@ package to.us.moodmessenger.MoodMessenger.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-import to.us.moodmessenger.MoodMessenger.UserRepository;
-import to.us.moodmessenger.MoodMessenger.entity.User;
 import to.us.moodmessenger.MoodMessenger.mappers.UserMapper;
+import to.us.moodmessenger.MoodMessenger.repositories.UserRepository;
+import to.us.moodmessenger.MoodMessenger.entities.User;
 import to.us.moodmessenger.MoodMessenger.model.UserDTO;
 import to.us.moodmessenger.MoodMessenger.utils.PasswordUtils;
 
@@ -41,6 +40,9 @@ public class UserServiceJPAImp implements UserService{
 
     @Override
     public UserDTO saveNewUser(UserDTO userDTO) {
+        userDTO.setPassword_hash(PasswordUtils.encryptPassword(userDTO.getPassword_hash()));
+        userDTO.setCreated_date(LocalDateTime.now());
+        userDTO.setUpdated_date(LocalDateTime.now());
         return userMapper.userToUserDTO(userRepository.save(userMapper.userDTOToUser(userDTO)));
     }
 

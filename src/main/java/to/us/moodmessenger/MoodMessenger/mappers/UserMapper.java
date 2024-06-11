@@ -1,9 +1,12 @@
 package to.us.moodmessenger.MoodMessenger.mappers;
 
-import to.us.moodmessenger.MoodMessenger.entity.User;
+import org.mapstruct.Mapper;
+import to.us.moodmessenger.MoodMessenger.entities.User;
 import to.us.moodmessenger.MoodMessenger.model.UserDTO;
 
+@Mapper
 public interface UserMapper {
-    User userDTOToUser(UserDTO userDTO);
     UserDTO userToUserDTO(User user);
+    User userDTOToUser(UserDTO userDTO);
+
 }
