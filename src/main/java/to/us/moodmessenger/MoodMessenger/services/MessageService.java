@@ -12,4 +12,6 @@ public interface MessageService {
     List<MessageDTO> getAllMessages();
     MessageDTO saveMessage(MessageDTO message);
     List<MessageDTO> getAllMessagesRead();
-}
+    List<MessageDTO> getAllRecentChats(UUID sender_id);
+
+    }

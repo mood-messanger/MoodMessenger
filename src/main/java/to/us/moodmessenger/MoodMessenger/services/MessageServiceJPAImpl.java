@@ -48,5 +48,11 @@ public class MessageServiceJPAImpl implements MessageService {
         List<Message> readMessages = messageRepository.findAllRead(MessageStatus.READ.ordinal());
         return readMessages.stream().map(messageMapper::messageToMessageDTO).toList();
     }
+    @Override
+    public List<MessageDTO> getAllRecentChats(UUID sender_id ) {
+        List<Message> readMessages = messageRepository.findLatestMessagesByUser(sender_id.toString());
+        System.out.println(readMessages);
+        return readMessages.stream().map(messageMapper::messageToMessageDTO).toList();
+    }
 
 }

@@ -15,6 +15,9 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "message", indexes = {
+        @Index(name = "idx_sender_receiver", columnList = "sender_id, receiver_id")
+})
 public class Message {
     @Id
     @GeneratedValue(generator = "UUID")
