@@ -7,6 +7,7 @@ import to.us.moodmessenger.MoodMessenger.entities.User;
 import to.us.moodmessenger.MoodMessenger.model.ConverstationBetween;
 import to.us.moodmessenger.MoodMessenger.model.MessageDTO;
 import to.us.moodmessenger.MoodMessenger.model.UserDTO;
+import to.us.moodmessenger.MoodMessenger.services.KafkaProducer;
 import to.us.moodmessenger.MoodMessenger.services.MessageService;
 
 import java.util.List;
@@ -17,12 +18,17 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
+    @Autowired
+    private KafkaProducer kafkaProducer;
+
     @GetMapping
     public List<MessageDTO> getMessages() {
         return messageService.getAllMessages();
     }
+    //.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic user-messages
     @PostMapping
     public MessageDTO postMessage(@RequestBody MessageDTO messageDTO) {
+        kafkaProducer.sendMessage("user-messages",messageDTO.getMessage());
         return messageService.saveMessage(messageDTO);
     }
     @GetMapping("/read")
