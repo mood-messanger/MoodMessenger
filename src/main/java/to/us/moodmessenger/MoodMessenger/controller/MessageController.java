@@ -29,7 +29,10 @@ public class MessageController {
     @PostMapping
     public MessageDTO postMessage(@RequestBody MessageDTO messageDTO) {
         kafkaProducer.sendMessage("user-messages",messageDTO.getMessage());
-        return messageService.saveMessage(messageDTO);
+        MessageDTO message =  messageService.saveMessage(messageDTO);
+        kafkaProducer.sendMessage("user-messages",message.toString());
+
+        return message;
     }
     @GetMapping("/read")
     public List<MessageDTO> getAllMessagesRead(){

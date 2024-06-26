@@ -3,6 +3,7 @@ package to.us.moodmessenger.MoodMessenger.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import to.us.moodmessenger.MoodMessenger.model.MessageDTO;
 
 @Service
 public class KafkaProducer {
